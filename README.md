@@ -5,5 +5,5 @@
 - stiffness matrix (A) assembly; parallel (OpenMP or MPI), assemblied at each time step of the transient analysis
 
 <p align="center">
-    <img src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.pdf"/>
+    <img src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.pdf" width="650"/>
   </p>
