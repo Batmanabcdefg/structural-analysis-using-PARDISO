@@ -8,4 +8,4 @@
     <img src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.pdf" width="650"/>
 </p>
 
-<embed src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.pdf" type="application/pdf" class="responsive">
+<embed src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.pdf" height="300px" width="100%" type="application/pdf" class="responsive">
