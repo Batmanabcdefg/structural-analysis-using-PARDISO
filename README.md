@@ -6,4 +6,6 @@
 
 <p align="center">
     <img src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.pdf" width="650"/>
-  </p>
+</p>
+
+<embed src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.pdf" type="application/pdf" class="responsive">
