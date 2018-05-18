@@ -26,7 +26,7 @@ perm_dof2 = [];
 indx_i = [];
 indx_j = [];
 
-for i=1:18 %nodes
+for i=1:18 %total number of degrees of freedom for the four elements
 [a_element,b_node] = find(TFEM==i);
 A = sortrows([a_element,b_node]);
 perm_element = [perm_element;A(:,1)];
@@ -44,6 +44,7 @@ perm_dof1(find(perm_element==2)) = 7;
 perm_dof1(find(perm_element==3)) = 3;
 perm_dof1(find(perm_element==4)) = 1;
 perm_dof1 = perm_dof1';
+
 %find what kkk-th iteration to skip adding kkk, save into RR
 k=1
 for i=1:31
@@ -79,7 +80,12 @@ for nxdof=1:2
 		%need it 
 		%if any of these numbers is equal to dof then execute the condition: info=0
 		%don't count when you switch element 
-		if isempty(find([1,2,3,5,7,8,9,11,13,17,21,23,25,26,27,29,31,32]==dof))==0 %find from only the first DOFs for each kkk
+		%if isempty(find([1,2,3,5,7,8,9,11,13,17,21,23,25,26,27,29,31,32]==dof))==0 %find from only the first DOFs for each kkk
+		%info=0;
+		%end
+		%these numbers are now in RR2
+
+		if isempty(find(RR2==dof))==0
 		info=0;
 		end
 
