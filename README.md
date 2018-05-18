@@ -1,19 +1,13 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" media="all" href="normalize.css">
-    <link rel="stylesheet" media="all" href="core.css">
-    <link rel="stylesheet" media="all" href="style.css">
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</head>
-<body data-document>&nbsp;</body>
-</html>
 
 # structural-analysis-using-PARDISO
 
 ## Algorithm
- - read input file (system size, $\Delta x$)
+ - read input file (LA,LB,na,nb)
+ - run symbolic mesh analysis to obtain: **IA**, **JA**, **TFEM_CSR**, **K_diag**
+ - assembly the stiffness matrix **K**
+ - provide the nodal force **F** and boundary conditions using the penalty method
+ - solve **K** **u** = **F** using PARDISO
+ - postprocess results (displacement field) **u**
 
 
 ### Mesh Generation
