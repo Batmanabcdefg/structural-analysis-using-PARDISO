@@ -71,20 +71,7 @@ RR2(RR2_excl)=[];
 %-------------------------------------------------------------------------
 for j=1:nb
 for i=1:na
-element(:) = -1;
-
-%if (i>1 & j>1)
-%element(1) = (j-2)*(na-1) + i-1;
-%end
-%if (i<na & j>1)
-%element(2) = (j-2)*(na-1) + i;
-%end
-%if (i>1 & j<nb)
-%element(3) = (j-1)*(na-1) + i-1;
-%end
-%if (i<na & j<nb)
-%element(4) = (j-1)*(na-1) + i;
-%end
+%element(:) = -1;
 
 for nxdof=1:2
 	for dof=1:32
@@ -130,12 +117,6 @@ for nxdof=1:2
 				otherwise 
 				%info = 0;
 		end
-		
-		%if (element(perm_element(dof))~=-1)
-		%info = 1;	%element does exist
-		%else
-		%info = 0;	%element does not exist
-		%end
 
 		if (isempty(find(dof==RR))==1 & info==1)
 		%find the DOF which is added
