@@ -11,6 +11,7 @@
 
 
 ### 2) symbolic mesh analysis
+It is assumed that the numbering of nodes, elements and degrees of freedom is such as shown in the figure below:
 
 <p align="center">
     <img src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.png" width="650"/>
