@@ -17,5 +17,7 @@ It is assumed that the numbering of nodes, elements and degrees of freedom is su
     <img src="https://github.com/MikulaJakub/structural-analysis-using-PARDISO/blob/master/Figures/numbering_3D.png" width="650"/>
 </p>
 
+The red node is the node which connets all eight elements togehter. 
+
 ### 3) stiffness matrix assembly
 
