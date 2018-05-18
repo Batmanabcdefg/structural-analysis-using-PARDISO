@@ -4,8 +4,10 @@
 % PARAMETERS TO MODIFY
 % --------------------
 % DEFINE GRID
-na=2
-nb=2
+%na=2
+%nb=2
+
+function [JA,IA,TFEM_CSR,K_diag] = CSR_analysis_2D( na,nb )
 
 % DON'T TOUCH
 % -----------
@@ -182,3 +184,5 @@ end %nxdof
 
 end %na
 end %nb
+
+end %function
