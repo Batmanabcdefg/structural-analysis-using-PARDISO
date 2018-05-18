@@ -1,27 +1,42 @@
+%clear
+%clc
+
+% PARAMETERS TO MODIFY
+% --------------------
+% DEFINE GRID
 na=2
 nb=2
+
+% DON'T TOUCH
+% -----------
 kkk = 1;
 swch = 1;
 pos = 2;
 IA(1) = 1	;
 info=0;
 
+% topology matrix of the four elemetns
 TFEM = [1,2,3,4,9,10,7,8
 3,4,5,6,11,12,9,10
 7,8,9,10,15,16,13,14
 9,10,11,12,17,18,15,16];
 
+% element coordinates of the four elements
 x_e = [-1 -1 0 0 0 0 -1 -1
 0 0 1 1 1 1 0 0
 -1 -1 0 0 0 0 -1 -1
 0 0 1 1 1 1 0 0];
 
+% element coordinates of the four elements
 y_e = [-1 -1 -1 -1 0 0 0 0
 -1 -1 -1 -1 0 0 0 0
 0 0 0 0 1 1 1 1
 0 0 0 0 1 1 1 1];
 
+% these vectors show how the property is permuted when going from 1st to end-th node
+% how these are related to the node which is being called 
 perm_element = [];
+perm_dof1 = []; 
 perm_dof2 = [];
 indx_i = [];
 indx_j = [];
@@ -34,11 +49,13 @@ perm_dof2 = [perm_dof2;A(:,2)];
 indx_i = [indx_i;diag(x_e(A(:,1),A(:,2)))];
 indx_j = [indx_j;diag(y_e(A(:,1),A(:,2)))];
 end
-%element --> node
+
+%element --> node (central node)
 %1 --> 5
 %2 --> 7
 %3 --> 3
 %4 --> 1
+
 perm_dof1(find(perm_element==1)) = 5;
 perm_dof1(find(perm_element==2)) = 7;
 perm_dof1(find(perm_element==3)) = 3;
@@ -76,7 +93,7 @@ for i=1:na
 
 for nxdof=1:2
 	for dof=1:32
-
+	
 		%need it 
 		%if any of these numbers is equal to dof then execute the condition: info=0
 		%don't count when you switch element 
@@ -91,11 +108,13 @@ for nxdof=1:2
 
 		%if element dof exists then info = 1; 
 		%if it does not exist should I add kkk? 
+		info_element = 0;
 		switch perm_element(dof)
 			case 1
 				if (i>1 & j>1)
 				element = (j-2)*(na-1)+i-1;
 				info = 1;
+				info_element = 1;
 				%else 
 				%info = 0;
 				end 
@@ -103,6 +122,7 @@ for nxdof=1:2
 				if (i<na & j>1)
 				element = (j-2)*(na-1)+i;
 				info = 1;
+				info_element = 1;
 				%else 
 				%info = 0;
 				end
@@ -110,6 +130,7 @@ for nxdof=1:2
 				if (i>1 & j<nb)
 				element = (j-1)*(na-1)+i-1;
 				info = 1;
+				info_element = 1;
 				%else
 				%info = 0;
 				end
@@ -117,12 +138,28 @@ for nxdof=1:2
 				if (i<na & j<nb)
 				element = (j-1)*(na-1)+i;
 				info = 1;
+				info_element = 1;
 				%else 
 				%info = 0;
 				end
 				otherwise 
 				%info = 0;
 		end
+
+% ASSEMBLY THE CSR TOPOLOGY MATRIX
+% --------------------------------
+if info_element == 1
+TFEM_CSR(element, perm_dof1(dof)+nxdof-1, perm_dof2(ndof)) = kkk;
+end
+
+% FIND POSITION OF EACH NODE ON THE DIAGONAL OF THE STIFFNESS MATRIX
+% ------------------------------------------------------------------
+if (nxdof==1 & dof==13)
+	K_diag(2*(na*(j-1)+i)-1) = kkk;
+end
+if (nxdof==2 & dof=17)
+	K_diag(2*(na*(j-1)+i)) = kkk;
+end
 
 		if (isempty(find(dof==RR))==1 & info==1)
 		%find the DOF which is added
