@@ -151,7 +151,7 @@ for nxdof=1:2
 % ASSEMBLY THE CSR TOPOLOGY MATRIX
 % --------------------------------
 if info_element == 1
-TFEM_CSR(element, perm_dof1(dof)+nxdof-1, perm_dof2(ndof)) = kkk;
+TFEM_CSR(element, perm_dof1(dof)+nxdof-1, perm_dof2(dof)) = kkk;
 end
 
 % FIND POSITION OF EACH NODE ON THE DIAGONAL OF THE STIFFNESS MATRIX
@@ -159,7 +159,7 @@ end
 if (nxdof==1 & dof==13)
 	K_diag(2*(na*(j-1)+i)-1) = kkk;
 end
-if (nxdof==2 & dof=17)
+if (nxdof==2 & dof==17)
 	K_diag(2*(na*(j-1)+i)) = kkk;
 end
 
