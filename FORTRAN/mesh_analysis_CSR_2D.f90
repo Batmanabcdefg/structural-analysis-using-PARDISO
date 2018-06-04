@@ -50,7 +50,7 @@ INTEGER :: RR2_excl(14)
 INTEGER :: i1,i2
 INTEGER :: dof, nxdof
 
-INTEGER :: a_element, b_node
+INTEGER :: i,j
 INTEGER :: element
 
 ! INITIALIZE VARIABLES
