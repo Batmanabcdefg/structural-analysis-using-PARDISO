@@ -32,7 +32,8 @@ INTEGER, intent(IN) :: na
 INTEGER, intent(IN) :: nb
 INTEGER, intent(IN) :: nc
 
-INTEGER, intent(OUT) :: JA(3*((na-2)*(nb-2)*(nc-2)*27*3 + 3*(na-2)*18*3 + 3*(nb-2)*18*3 + 3*(nc-2)*18*3 + 12*8*3))
+INTEGER, intent(OUT) :: JA(3*((na-2)*(nb-2)*(nc-2)*27*3 + 2*(na-2)*(nc-2)*18*3 + &
+        2*(nb-2)*(nc-2)*18*3 + 2*(na-2)*(nb-2)*18*3 + 8*8*3))
 INTEGER, intent(OUT) :: IA(na*nb*nc*3+1)
 INTEGER, intent(OUT) :: TFEM_CSR((na-1)*(nb-1)*(nc-1),24,24)
 INTEGER, intent(OUT) :: K_diag(3*na*nb*nc)
@@ -107,8 +108,8 @@ z_e(6,:) = (/0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1/)
 z_e(7,:) = (/0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1/)
 z_e(8,:) = (/0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1/)
 
-l=1
-DO,i=1,81,1
+l = 1
+DO,i=1,81,1 !total number of degrees of freedom for the eight elements
  DO,i1=1,8,1
  DO,i2=1,24,1
   IF (TFEM(i1,i2).EQ.i) THEN
@@ -142,8 +143,9 @@ DO,i=1,192,1
  ENDIF
 ENDDO !i
 
+
 l = 1
-DO,dof=1,191,1
+DO,dof=1,190,1
  IF (perm_element(dof) .NE. perm_element(dof+1)) THEN
   IF (perm_element(dof+1) >= perm_element(dof)) THEN
    IF (indx_i(dof).EQ.indx_i(dof+1) .OR. indx_j(dof).EQ.indx_j(dof+1) .OR. indx_k(dof).EQ.indx_k(dof+1)) THEN
@@ -167,6 +169,8 @@ DO,i=1,192,1
          i2 = i2 + 1
  ENDIF
 ENDDO !i
+
+print*,RR
 
 ! ------------------------------------------------------------------------------
 DO,k=1,nc,1
