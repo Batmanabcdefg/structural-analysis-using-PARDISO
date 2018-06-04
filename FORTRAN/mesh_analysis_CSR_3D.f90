@@ -54,11 +54,12 @@ INTEGER :: RR2_excl(111)
 
 INTEGER :: dof, nxdof
 INTEGER :: element
+INTEGER :: i1,i2
 
 ! INITIALIZE VARIABLES
 ! --------------------
 kkk     = 1
-swch    = 1
+swch    = 2
 pos     = 2
 info    = 0
 indx    = 2
@@ -136,16 +137,15 @@ DO,i=1,192,1
 ENDDO !i
 
 l = 1
-DO,i=1,192,1
+DO,i=1,191,1
  IF (perm_element(i).NE.perm_element(i+1) .AND. perm_element(i).LT.perm_element(i+1)) THEN
          RR(l) = i
          l = l + 1
  ENDIF
 ENDDO !i
 
-
 l = 1
-DO,dof=1,190,1
+DO,dof=1,191,1
  IF (perm_element(dof) .NE. perm_element(dof+1)) THEN
   IF (perm_element(dof+1) >= perm_element(dof)) THEN
    IF (indx_i(dof).EQ.indx_i(dof+1) .OR. indx_j(dof).EQ.indx_j(dof+1) .OR. indx_k(dof).EQ.indx_k(dof+1)) THEN
@@ -159,7 +159,7 @@ ENDDO !dof
 i2 = 1
 DO,i=1,192,1
  k = 0
- DO,i1=1,81
+ DO,i1=1,111
   IF (RR2_excl(i1).EQ.i) THEN
           k = 1
   ENDIF
@@ -169,8 +169,6 @@ DO,i=1,192,1
          i2 = i2 + 1
  ENDIF
 ENDDO !i
-
-print*,RR
 
 ! ------------------------------------------------------------------------------
 DO,k=1,nc,1
@@ -247,7 +245,7 @@ DO,i=1,na,1
 
   l = 0
   DO,i1=1,111,1
-   IF (rr(i1).EQ.dof) l = 1
+   IF (RR(i1).EQ.dof) l = 1
   ENDDO
   IF (l.EQ.0 .AND. info.EQ.1) THEN
           JA(kkk) = 3*((k-1+indx_k(dof))*na*nb + (j-1+indx_j(dof))*na + i+indx_i(dof)) -1*swch
@@ -272,4 +270,5 @@ ENDDO !i
 ENDDO !j
 ENDDO !k
 
+print*,JA
 end subroutine
