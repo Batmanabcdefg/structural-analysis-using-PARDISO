@@ -4,9 +4,9 @@
 ## Algorithm
  1) read input file (LA,LB,na,nb)
  2) run symbolic mesh analysis to obtain: **IA**, **JA**, **TFEM_CSR**, **K_diag**
- 3) assembly the stiffness matrix **K** (*parallelized*)
+ 3) assembly the stiffness matrix **K** (*consider parallelization*)
  4) provide the nodal force **F** and boundary conditions using the penalty method
- 5) solve **K** **u** = **F** using PARDISO (*parallelized*)
+ 5) solve **K** **u** = **F** using PARDISO (*consider parallelization*)
  6) postprocess results (displacement field) **u**
 
 
