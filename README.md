@@ -2,7 +2,9 @@
 # structural-analysis-using-PARDISO
 
 ## Periodic Boundary conditions
-Periodic boundary conditions are activated by initializing `periodic_constraint .TRUE.`. Then, specify the constraint. This is done by the vector `pphase(/s(1),s(2),s(3),s(4),s(5),s(6),s(7),s(8),s(9)/)`. The parameters `s(1)` to `s(9)` can be initialized with `.TRUE.` or `.FALSE.` depending on whether the constrains `s(i)` is active. `s(1)` - constrain x=0 in x; `s(2)` - constrain x=0 in y; `s(3)` -constrain x=0 in z; `s(4)` - constrain y=0 in x; etc. 
+Periodic boundary conditions are activated by initializing the variable `pphase(1:9)`. Then, specify the constraint: This is done by the vector `pphase(/s(1),s(2),s(3),s(4),s(5),s(6),s(7),s(8),s(9)/)`. The parameters `s(1)` to `s(9)` can be initialized with `.TRUE.` or `.FALSE.` depending on whether the constrains `s(i)` is active. `s(1)` - constrain x=0 in x; `s(2)` - constrain x=0 in y; `s(3)` -constrain x=0 in z; `s(4)` - constrain y=0 in x; etc. 
+
+The `pphase` variable appears in the input file, `mesh_analysis_CSR_3Dx3_sym.f90`, `structural_3D.f90`, 
 
 ## Algorithm
  1) read input file (LA,LB,na,nb)
