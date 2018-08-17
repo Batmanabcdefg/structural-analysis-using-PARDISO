@@ -1,5 +1,7 @@
 # Working on it ... 
 
+
+
 # structural-analysis-using-PARDISO
 
 ## Periodic Boundary conditions
